@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil Tuteur - TutorApp</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- IMPORTANT: charger JS -->
+    <script src="assets/js/app.js" defer></script>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">TutorApp</div>
+
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="tutors.html">Tuteurs</a></li>
+        <li><a href="login.html">Connexion</a></li>
+        <li><a href="register.html">Inscription</a></li>
+        <li><a href="#" onclick="logout()">Déconnexion</a></li>
+    </ul>
+</div>
+
+<!-- PROFIL -->
+<div class="container">
+
+    <div class="card">
+        <h2>👨‍🏫 Jean Mukendi</h2>
+        <p><b>Matière :</b> Java / Programmation Orientée Objet</p>
+        <p><b>Expérience :</b> 3 ans d'accompagnement universitaire</p>
+        <p><b>Note :</b> ⭐ 4.8 / 5</p>
+
+        <p><b>Description :</b></p>
+        <p>
+            Tuteur spécialisé en développement Java et Spring Boot.
+            J’aide les étudiants à comprendre la programmation et réussir leurs projets.
+        </p>
+    </div>
+
+    <!-- RESERVATION -->
+    <div class="card">
+
+        <h2>📅 Réserver une séance</h2>
+
+        <form onsubmit="handleReservation(event, 'Jean Mukendi', 'Java')">
+
+            <label>Date :</label><br>
+            <input type="date" required style="padding:10px; width:100%;"><br><br>
+
+            <label>Heure :</label><br>
+            <input type="time" required style="padding:10px; width:100%;"><br><br>
+
+            <label>Message :</label><br>
+            <textarea id="message"
+                placeholder="Décris ton besoin..."
+                style="padding:10px; width:100%; height:100px;"></textarea><br><br>
+
+            <button class="btn" type="submit">
+                Réserver
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

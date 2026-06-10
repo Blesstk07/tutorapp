@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Admin - TutorApp</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        /* LAYOUT */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: #0a2540;
+            color: white;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #ff7a00;
+        }
+
+        /* CONTENT */
+        .content {
+            padding: 30px;
+            background: #f4f6f9;
+        }
+
+        /* STATS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        }
+
+        .stat-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        /* TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        }
+
+        table th, table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        table th {
+            background: #0a2540;
+            color: white;
+        }
+
+        .btn-small {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .delete {
+            background: red;
+            color: white;
+        }
+
+        .view {
+            background: #ff7a00;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>🛠️ Admin</h2>
+
+        <a href="#">📊 Dashboard</a>
+        <a href="#">👥 Utilisateurs</a>
+        <a href="#">👨‍🏫 Tuteurs</a>
+        <a href="#">📅 Réservations</a>
+        <a href="#">📈 Statistiques</a>
+        <a href="../index.html">🚪 Déconnexion</a>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <h1>Panel Administrateur ⚙️</h1>
+        <p>Gestion complète de la plateforme TutorApp</p>
+
+        <!-- STATS -->
+        <div class="stats">
+
+            <div class="stat-card">
+                <h3>120</h3>
+                <p>Utilisateurs</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>35</h3>
+                <p>Tuteurs</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>80</h3>
+                <p>Réservations</p>
+            </div>
+
+        </div>
+        <h2>👥 Utilisateurs</h2>
+
+<table id="userTable">
+    <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Rôle</th>
+    </tr>
+</table>
+
+        <!-- USERS TABLE -->
+        <h2>👥 Gestion des utilisateurs</h2>
+
+        <table>
+            <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Rôle</th>
+                <th>Action</th>
+            </tr>
+
+            <tr>
+                <td>Bless Tshimanga</td>
+                <td>bless@example.com</td>
+                <td>Étudiant</td>
+                <td>
+                    <button class="btn-small view">Voir</button>
+                    <button class="btn-small delete">Supprimer</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Jean Mukendi</td>
+                <td>jean@example.com</td>
+                <td>Tuteur</td>
+                <td>
+                    <button class="btn-small view">Voir</button>
+                    <button class="btn-small delete">Supprimer</button>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>TutorApp - Tuteurs</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/app.js"></script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">TutorApp</div>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="tutors.html">Tuteurs</a></li>
+        <li><a href="login.html">Connexion</a></li>
+        <li><a href="register.html">Inscription</a></li>
+        <a href="#" onclick="logout()">Déconnexion</a>
+    </ul>
+</div>
+
+<!-- TITLE -->
+<div style="padding:30px; text-align:center;">
+    <h1>Nos Tuteurs Disponibles</h1>
+    <p>Trouvez le tuteur qui correspond à votre matière</p>
+</div>
+
+<!-- SEARCH -->
+<div style="text-align:center; margin-bottom:20px;">
+    <input type="text" id="search" placeholder="Rechercher un tuteur..."
+        style="padding:10px; width:300px;">
+</div>
+
+<!-- CARDS -->
+<div class="container" id="tutorList">
+
+    <div class="card">
+        <h3>Jean Mukendi</h3>
+        <p><b>Matière :</b> Java</p>
+        <p><b>Note :</b> ⭐ 4.8</p>
+        <a class="btn" href="tutor-profile.html">Voir profil</a>
+    </div>
+
+    <div class="card">
+        <h3>Sarah Kabeya</h3>
+        <p><b>Matière :</b> Mathématiques</p>
+        <p><b>Note :</b> ⭐ 4.5</p>
+        <a class="btn" href="tutor-profile.html">Voir profil</a>
+    </div>
+
+    <div class="card">
+        <h3>David Ilunga</h3>
+        <p><b>Matière :</b> Base de données</p>
+        <p><b>Note :</b> ⭐ 4.7</p>
+        <a class="btn" href="tutor-profile.html">Voir profil</a>
+    </div>
+
+</div>
+
+<!-- JS SEARCH -->
+<script>
+const search = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+
+search.addEventListener("keyup", function() {
+    let value = search.value.toLowerCase();
+
+    cards.forEach(card => {
+        let text = card.innerText.toLowerCase();
+        card.style.display = text.includes(value) ? "block" : "none";
+    });
+});
+</script>
+
+</body>
+</html>

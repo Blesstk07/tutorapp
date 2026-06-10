@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription - TutorApp</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/app.js"></script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">TutorApp</div>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="tutors.html">Tuteurs</a></li>
+        <li><a href="login.html">Connexion</a></li>
+        <li><a href="register.html">Inscription</a></li>
+        <a href="#" onclick="logout()">Déconnexion</a>
+    </ul>
+</div>
+
+<!-- FORM -->
+<div class="hero" style="height: 100vh;">
+
+    <h1>Inscription</h1>
+
+    <form onsubmit="register(event)" style="margin-top:20px; width:300px;">
+
+        <input type="text" placeholder="Nom" required
+            style="padding:10px; width:100%; margin-bottom:10px;">
+
+        <input type="text" placeholder="Prénom" required
+            style="padding:10px; width:100%; margin-bottom:10px;">
+
+        <input type="email" placeholder="Email" required
+            style="padding:10px; width:100%; margin-bottom:10px;">
+
+        <input type="password" placeholder="Mot de passe" required
+            style="padding:10px; width:100%; margin-bottom:10px;">
+
+        <select style="padding:10px; width:100%; margin-bottom:10px;">
+            <option value="ETUDIANT">Étudiant</option>
+            <option value="TUTEUR">Tuteur</option>
+        </select>
+
+        <button class="btn" type="submit" style="width:100%;">
+            S'inscrire
+        </button>
+
+    </form>
+
+</div>
+
+<!-- JS -->
+<script>
+function register(event) {
+    event.preventDefault();
+    alert("🎉 Inscription réussie !");
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

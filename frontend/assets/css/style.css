@@ -1,0 +1,143 @@
+/* =========================
+   RESET & BASE
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+    color: #1e1e1e;
+}
+
+/* =========================
+   COULEURS PRINCIPALES
+========================= */
+:root {
+    --primary: #0a2540;
+    --secondary: #ff7a00;
+    --light: #ffffff;
+    --gray: #f4f6f9;
+}
+
+/* =========================
+   BUTTON SYSTEM
+========================= */
+.btn {
+    background: var(--secondary);
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background: #e66a00;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   CARDS SYSTEM
+========================= */
+.card {
+    background: var(--light);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+/* =========================
+   NAVBAR GLOBAL
+========================= */
+.navbar {
+    background: var(--primary);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+}
+
+.navbar ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: var(--secondary);
+    transition: 0.3s;
+}
+
+.navbar ul li a:hover::after {
+    width: 100%;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero {
+    height: 80vh;
+    background: linear-gradient(135deg, var(--primary), #1b3a57);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    opacity: 0.85;
+}
