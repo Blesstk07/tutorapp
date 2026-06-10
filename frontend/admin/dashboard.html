@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Admin - TutorApp</title>
+
     <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/app.js" defer></script>
 
     <style>
-        /* LAYOUT */
         .dashboard {
             display: grid;
             grid-template-columns: 250px 1fr;
             min-height: 100vh;
         }
 
-        /* SIDEBAR */
         .sidebar {
             background: #0a2540;
             color: white;
@@ -38,13 +38,11 @@
             background: #ff7a00;
         }
 
-        /* CONTENT */
         .content {
             padding: 30px;
             background: #f4f6f9;
         }
 
-        /* STATS */
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -61,10 +59,8 @@
 
         .stat-card h3 {
             font-size: 22px;
-            margin-bottom: 10px;
         }
 
-        /* TABLE */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -74,13 +70,12 @@
             box-shadow: 0 6px 15px rgba(0,0,0,0.08);
         }
 
-        table th, table td {
+        th, td {
             padding: 15px;
-            text-align: left;
             border-bottom: 1px solid #eee;
         }
 
-        table th {
+        th {
             background: #0a2540;
             color: white;
         }
@@ -90,16 +85,10 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 12px;
         }
 
         .delete {
             background: red;
-            color: white;
-        }
-
-        .view {
-            background: #ff7a00;
             color: white;
         }
     </style>
@@ -117,76 +106,45 @@
         <a href="#">👥 Utilisateurs</a>
         <a href="#">👨‍🏫 Tuteurs</a>
         <a href="#">📅 Réservations</a>
-        <a href="#">📈 Statistiques</a>
-        <a href="../index.html">🚪 Déconnexion</a>
+        <a href="../index.html" onclick="logout()">🚪 Déconnexion</a>
     </div>
 
     <!-- CONTENT -->
     <div class="content">
 
         <h1>Panel Administrateur ⚙️</h1>
-        <p>Gestion complète de la plateforme TutorApp</p>
+        <p>Gestion globale de la plateforme</p>
 
         <!-- STATS -->
         <div class="stats">
 
             <div class="stat-card">
-                <h3>120</h3>
+                <h3 id="totalUsers">0</h3>
                 <p>Utilisateurs</p>
             </div>
 
             <div class="stat-card">
-                <h3>35</h3>
+                <h3 id="totalTutors">0</h3>
                 <p>Tuteurs</p>
             </div>
 
             <div class="stat-card">
-                <h3>80</h3>
+                <h3 id="totalReservations">0</h3>
                 <p>Réservations</p>
             </div>
 
         </div>
-        <h2>👥 Utilisateurs</h2>
-
-<table id="userTable">
-    <tr>
-        <th>Nom</th>
-        <th>Email</th>
-        <th>Rôle</th>
-    </tr>
-</table>
 
         <!-- USERS TABLE -->
-        <h2>👥 Gestion des utilisateurs</h2>
+        <h2>👥 Liste des utilisateurs</h2>
 
-        <table>
+        <table id="userTable">
             <tr>
                 <th>Nom</th>
                 <th>Email</th>
                 <th>Rôle</th>
                 <th>Action</th>
             </tr>
-
-            <tr>
-                <td>Bless Tshimanga</td>
-                <td>bless@example.com</td>
-                <td>Étudiant</td>
-                <td>
-                    <button class="btn-small view">Voir</button>
-                    <button class="btn-small delete">Supprimer</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>Jean Mukendi</td>
-                <td>jean@example.com</td>
-                <td>Tuteur</td>
-                <td>
-                    <button class="btn-small view">Voir</button>
-                    <button class="btn-small delete">Supprimer</button>
-                </td>
-            </tr>
-
         </table>
 
     </div>

@@ -1,13 +1,18 @@
+// ======================
+// DATA STORE
+// ======================
 let users = JSON.parse(localStorage.getItem("users")) || [];
 let reservations = JSON.parse(localStorage.getItem("reservations")) || [];
 let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
 
+// ======================
+// AUTHENTICATION
+// ======================
 
-// Pour la page d'inscription
 function register(event) {
     event.preventDefault();
 
-    let user = {
+    const user = {
         id: Date.now(),
         nom: document.querySelector("input[placeholder='Nom']").value,
         prenom: document.querySelector("input[placeholder='Prénom']").value,
@@ -22,45 +27,56 @@ function register(event) {
     alert("Inscription réussie !");
     window.location.href = "login.html";
 }
-
-// Pour la page de connexion
 function login(event) {
     event.preventDefault();
 
-    let email = document.querySelector("input[type='email']").value;
-    let password = document.querySelector("input[type='password']").value;
+    const email = document.querySelector("input[type='email']").value;
+    const password = document.querySelector("input[type='password']").value;
 
-    let user = users.find(u => u.email === email && u.password === password);
+    const user = users.find(u => u.email === email && u.password === password);
 
-    if (user) {
-        currentUser = user;
-        localStorage.setItem("currentUser", JSON.stringify(user));
-
-        alert("Connexion réussie !");
-
-        // redirection selon rôle
-        if (user.role === "ETUDIANT") {
-            window.location.href = "student/dashboard.html";
-        } else if (user.role === "TUTEUR") {
-            window.location.href = "tutor/dashboard.html";
-        } else {
-            window.location.href = "admin/dashboard.html";
-        }
-
-    } else {
+    if (!user) {
         alert("Email ou mot de passe incorrect !");
+        return;
+    }
+
+    currentUser = user;
+    localStorage.setItem("currentUser", JSON.stringify(user));
+
+    alert("Connexion réussie !");
+
+    redirectByRole(user.role);
+}
+// Pour rediriger les utilisateurs en fonction de leur rôle
+function logout() {
+    localStorage.removeItem("currentUser");
+    window.location.href = "login.html";
+}
+function redirectByRole(role) {
+    if (role === "ETUDIANT") {
+        window.location.href = "student/dashboard.html";
+    } else if (role === "TUTEUR") {
+        window.location.href = "tutor/dashboard.html";
+    } else {
+        window.location.href = "admin/dashboard.html";
     }
 }
 
-// Pour la page de réservation
+// ======================
+// RESERVATIONS
+// ======================
+
 function reserveTutor(tutorName, subject) {
 
-    let reservation = {
+    if (!currentUser) return;
+
+    const reservation = {
         id: Date.now(),
         student: currentUser.nom + " " + currentUser.prenom,
         tutor: tutorName,
         subject: subject,
         date: new Date().toLocaleDateString(),
+        time: "",
         status: "EN_ATTENTE"
     };
 
@@ -69,79 +85,65 @@ function reserveTutor(tutorName, subject) {
 
     alert("Réservation envoyée !");
 }
+// Pour les tuteurs : accepter ou refuser une réservation
+function updateStatus(id, status) {
 
-//Pour changer le dashboard étudiant
+    const res = reservations.find(r => r.id === id);
+
+    if (!res) return;
+
+    res.status = status;
+    localStorage.setItem("reservations", JSON.stringify(reservations));
+
+    location.reload();
+}
+// Pour les étudiants : voir leurs réservations
 function loadStudentDashboard() {
 
     if (!currentUser) return;
 
-    let userReservations = reservations.filter(r => r.student === currentUser.nom + " " + currentUser.prenom);
-
-    console.log("Mes réservations :", userReservations);
-}
-
-// Pour quitter la session
-function logout() {
-    localStorage.removeItem("currentUser");
-    window.location.href = "login.html";
-}
-
-// Pour afficher les réservations de l'étudiant
-function loadStudentReservations() {
-
-    if (!currentUser) return;
-
-    let table = document.getElementById("studentTable");
-
+    const table = document.getElementById("studentTable");
     if (!table) return;
 
-    let myReservations = reservations.filter(r =>
+    const myReservations = reservations.filter(r =>
         r.student === currentUser.nom + " " + currentUser.prenom
     );
 
+    document.getElementById("myReservationsCount").innerText = myReservations.length;
+
     myReservations.forEach(r => {
 
-        let row = document.createElement("tr");
+        const row = document.createElement("tr");
 
         row.innerHTML = `
             <td>${r.tutor}</td>
             <td>${r.subject}</td>
             <td>${r.date}</td>
-            <td>${r.time}</td>
+            <td>${r.time || "-"}</td>
             <td>${r.status}</td>
         `;
 
         table.appendChild(row);
     });
 }
+// Pour les tuteurs : voir les réservations reçues
+function loadTutorDashboard() {
 
-//Pour afficher les réservations du tuteur
-document.addEventListener("DOMContentLoaded", function() {
-    loadStudentReservations();
-});
-
-//Pour afficher les réservations du tuteur
-function loadTutorReservations() {
-
-    if (!currentUser) return;
-
-    let table = document.getElementById("tutorTable");
-
+    const table = document.getElementById("tutorTable");
     if (!table) return;
 
-    let myReservations = reservations.filter(r =>
+    const myReservations = reservations.filter(r =>
         r.tutor === "Jean Mukendi"
     );
 
     myReservations.forEach(r => {
 
-        let row = document.createElement("tr");
+        const row = document.createElement("tr");
 
         row.innerHTML = `
             <td>${r.student}</td>
             <td>${r.subject}</td>
             <td>${r.date}</td>
-            <td>${r.time}</td>
             <td>
                 <button onclick="updateStatus(${r.id}, 'ACCEPTE')">✔</button>
                 <button onclick="updateStatus(${r.id}, 'REFUSE')">❌</button>
@@ -151,34 +153,21 @@ function loadTutorReservations() {
         table.appendChild(row);
     });
 }
+// Pour les admins : voir tous les utilisateurs et statistiques
+function loadAdminDashboard() {
 
-// Pour mettre à jour le statut d'une réservation
-function updateStatus(id, status) {
-
-    let res = reservations.find(r => r.id === id);
-
-    if (res) {
-        res.status = status;
-        localStorage.setItem("reservations", JSON.stringify(reservations));
-        location.reload();
-    }
-}
-
-// Pour afficher les réservations du tuteur
-document.addEventListener("DOMContentLoaded", function() {
-    loadTutorReservations();
-});
-
-// Pour afficher les utilisateurs dans le dashboard admin
-function loadUsers() {
-
-    let table = document.getElementById("userTable");
-
+    const table = document.getElementById("userTable");
     if (!table) return;
+
+    document.getElementById("totalUsers").innerText = users.length;
+    document.getElementById("totalReservations").innerText = reservations.length;
+
+    const tutors = users.filter(u => u.role === "TUTEUR");
+    document.getElementById("totalTutors").innerText = tutors.length;
 
     users.forEach(u => {
 
-        let row = document.createElement("tr");
+        const row = document.createElement("tr");
 
         row.innerHTML = `
             <td>${u.nom} ${u.prenom}</td>
@@ -189,8 +178,11 @@ function loadUsers() {
         table.appendChild(row);
     });
 }
+// Pour charger les données au chargement de la page
+document.addEventListener("DOMContentLoaded", () => {
 
-// Pour afficher les utilisateurs dans le dashboard admin
-document.addEventListener("DOMContentLoaded", function() {
-    loadUsers();
+    loadStudentDashboard();
+    loadTutorDashboard();
+    loadAdminDashboard();
+
 });

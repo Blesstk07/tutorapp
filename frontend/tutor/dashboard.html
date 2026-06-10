@@ -5,6 +5,8 @@
     <title>Dashboard Tuteur - TutorApp</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 
+    <script src="../assets/js/app.js" defer></script>
+
     <style>
         /* LAYOUT */
         .dashboard {
@@ -44,7 +46,7 @@
             background: #f4f6f9;
         }
 
-        /* CARDS */
+        /* STATS */
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -114,10 +116,10 @@
         <h2>👨‍🏫 Tuteur</h2>
 
         <a href="#">📊 Dashboard</a>
-        <a href="#">📅 Mes réservations</a>
-        <a href="#">👨‍🎓 Mes étudiants</a>
-        <a href="#">⭐ Avis reçus</a>
-        <a href="../index.html">🚪 Déconnexion</a>
+        <a href="#">📅 Réservations</a>
+        <a href="#">👨‍🎓 Étudiants</a>
+        <a href="#">⭐ Avis</a>
+        <a href="../index.html" onclick="logout()">🚪 Déconnexion</a>
     </div>
 
     <!-- CONTENT -->
@@ -130,8 +132,8 @@
         <div class="stats">
 
             <div class="stat-card">
-                <h3>5</h3>
-                <p>Réservations reçues</p>
+                <h3 id="totalRes">0</h3>
+                <p>Réservations</p>
             </div>
 
             <div class="stat-card">
@@ -145,46 +147,18 @@
             </div>
 
         </div>
+
+        <!-- TABLE DYNAMIQUE -->
         <h2>📅 Réservations reçues</h2>
 
         <table id="tutorTable">
-        <tr>
-            <th>Étudiant</th>
-            <th>Matière</th>
-            <th>Date</th>
-            <th>Heure</th>
-            <th>Action</th>
-        </tr>
-        </table>
-        <!-- TABLE RESERVATIONS -->
-        <table>
             <tr>
                 <th>Étudiant</th>
                 <th>Matière</th>
                 <th>Date</th>
+                <th>Heure</th>
                 <th>Action</th>
             </tr>
-
-            <tr>
-                <td>Bless Tshimanga</td>
-                <td>Java</td>
-                <td>2026-06-10</td>
-                <td>
-                    <button class="btn-small accept">Accepter</button>
-                    <button class="btn-small reject">Refuser</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td>Kevin Mbuyi</td>
-                <td>Mathématiques</td>
-                <td>2026-06-11</td>
-                <td>
-                    <button class="btn-small accept">Accepter</button>
-                    <button class="btn-small reject">Refuser</button>
-                </td>
-            </tr>
-
         </table>
 
     </div>
