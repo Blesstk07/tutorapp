@@ -1,148 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Connexion - TutorApp</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/app.js"></script>
+<meta charset="UTF-8">
+<title>Login</title>
 
-    <style>
-        /* PAGE LOGIN SPLIT */
-        .login-container {
-            display: flex;
-            height: 100vh;
-        }
-
-        /* LEFT SIDE */
-        .left {
-            flex: 1;
-            background: linear-gradient(135deg, #0a2540, #1b3a57);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px;
-        }
-
-        .left h1 {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-
-        .left p {
-            font-size: 18px;
-            opacity: 0.8;
-        }
-
-        /* RIGHT SIDE */
-        .right {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #f4f6f9;
-        }
-
-        .login-box {
-            background: white;
-            padding: 40px;
-            width: 350px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .login-box h2 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .login-box input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .login-box button {
-            width: 100%;
-            padding: 12px;
-            background: #ff7a00;
-            border: none;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .login-box button:hover {
-            background: #e66900;
-        }
-
-        .login-box a {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            font-size: 14px;
-            color: #0a2540;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .login-container {
-                flex-direction: column;
-            }
-
-            .left {
-                height: 40vh;
-            }
-
-            .right {
-                height: 60vh;
-            }
-        }
-    </style>
+<script defer src="assets/js/app.js"></script>
 </head>
 
 <body>
 
-<div class="login-container">
+<h2>Connexion</h2>
 
-    <!-- LEFT -->
-    <div class="left">
-        <h1>TutorApp</h1>
-        <p>Apprenez mieux avec les meilleurs tuteurs universitaires</p>
-    </div>
+<form id="loginForm">
+  <input type="email" id="email" placeholder="Email" required>
+  <input type="password" id="password" placeholder="Mot de passe" required>
+  <button type="submit">Se connecter</button>
+</form>
 
-    <!-- RIGHT -->
-    <div class="right">
-
-        <div class="login-box">
-            <h2>Connexion</h2>
-
-            <form onsubmit="login(event)">
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Mot de passe" required>
-
-                <button type="submit">Se connecter</button>
-            </form>
-
-            <a href="register.html">Créer un compte</a>
-        </div>
-
-    </div>
-
-</div>
-
-<script>
-function login(event) {
-    event.preventDefault();
-    alert("Connexion réussie !");
-    window.location.href = "index.html";
-}
-</script>
+<p id="message"></p>
 
 </body>
 </html>

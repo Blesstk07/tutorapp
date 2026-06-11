@@ -1,2 +1,5 @@
 /home/bless/Documents/TutorApp/backend/src/main/java/com/tutorapp/controller/UserController.java
+/home/bless/Documents/TutorApp/backend/src/main/java/com/tutorapp/repository/UserRepository.java
+/home/bless/Documents/TutorApp/backend/src/main/java/com/tutorapp/model/User.java
 /home/bless/Documents/TutorApp/backend/src/main/java/com/tutorapp/TutorAppApplication.java
+/home/bless/Documents/TutorApp/backend/src/main/java/com/tutorapp/model/LoginRequest.java

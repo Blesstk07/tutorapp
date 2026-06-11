@@ -22,7 +22,7 @@
 
 <!-- HERO -->
 <div class="hero">
-    <h1>Bienvenue sur TutorApp</h1>
+    <h1 id="welcome">Bienvenue sur TutorApp</h1>
     <p>Trouvez facilement un tuteur universitaire qualifié</p>
     <a class="btn" href="tutors.html">Trouver un tuteur</a>
 </div>
@@ -46,6 +46,19 @@
     </div>
 
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+
+    const welcome = document.getElementById("welcome");
+
+    if (user && welcome) {
+        welcome.innerText = "Bienvenue " + user.nom + " 👋";
+    }
+
+});
+</script>
 
 </body>
 </html>
